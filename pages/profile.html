@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মোৰ প্ৰফাইল - আখৰ ঘৰ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-card { background: white; margin: 20px; padding: 20px; border-radius: 25px; text-align: center; }
+        .user-img { width: 100px; height: 100px; border-radius: 50%; border: 5px solid var(--primary); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .stat-item { background: #f9f9f9; padding: 10px; border-radius: 15px; }
+        .stat-item h4 { font-size: 0.8rem; color: #666; }
+        .stat-item div { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
+        .achievements { padding: 20px; }
+        .badge { background: #fff9c4; padding: 10px; border-radius: 10px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>মোৰ পৰিচয়</h1>
+</header>
+
+<div class="profile-card">
+    <img src="assets/svg/profile-avatar.svg" class="user-img" alt="User">
+    <h2 style="margin-top:10px;">সৰু মইনা</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h4>স্বৰবৰ্ণ</h4>
+            <div id="swaraPercent">0%</div>
+        </div>
+        <div class="stat-item">
+            <h4>ব্যঞ্জনবৰ্ণ</h4>
+            <div id="vyanjanPercent">0%</div>
+        </div>
+        <div class="stat-item">
+            <h4>সংখ্যা</h4>
+            <div id="numberPercent">0%</div>
+        </div>
+    </div>
+</div>
+
+<div class="achievements">
+    <h3>🏅 মোৰ সফলতাসমূহ</h3>
+    <div id="achievementList" style="margin-top:10px;">
+        <!-- Badges will appear here -->
+    </div>
+</div>
+
+<button class="btn-main" style="background:#ef5350; font-size: 0.9rem;" onclick="resetProgress()">প্ৰগতি মচি পেলাওক (Reset)</button>
+
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item">🏠 <span>Home</span></a>
+    <a href="learning.html" class="nav-item">📚 <span>Learning</span></a>
+    <a href="profile.html" class="nav-item active">👤 <span>Profile</span></a>
+</nav>
+
+<script src="js/profile.js"></script>
+<script>
+    function resetProgress() {
+        if(confirm("আপুনি সঁচাকৈ সকলো মচিব বিচাৰে নেকি?")) {
+            localStorage.clear();
+            location.reload();
+        }
+    }
+</script>
+</body>
+</html>
