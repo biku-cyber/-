@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শিকো আহা - আখৰ ঘৰ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .learning-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        .path-card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-left: 8px solid var(--primary);
+        }
+        .path-card img { width: 80px; height: 80px; margin-right: 20px; }
+        .path-card h2 { color: #333; margin-bottom: 5px; }
+        .path-card p { color: #777; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>শিকন কক্ষ</h1>
+    <p>তোমাৰ প্ৰিয় ভাগটো বাছি লোৱা</p>
+</header>
+
+<div class="learning-grid">
+    <a href="swara.html" class="path-card">
+        <img src="assets/categories/swara.png">
+        <div>
+            <h2>স্বরবৰ্ণ</h2>
+            <p>অ, আ, ই, ঈ... শিকো আহা</p>
+        </div>
+    </a>
+
+    <a href="vyanjan.html" class="path-card" style="border-left-color: #ff7043;">
+        <img src="assets/categories/vyanjan.png">
+        <div>
+            <h2>ব্যঞ্জনবৰ্ণ</h2>
+            <p>ক, খ, গ, ঘ... শিকো আহা</p>
+        </div>
+    </a>
+
+    <a href="numbers.html" class="path-card" style="border-left-color: #81c784;">
+        <img src="assets/categories/numbers.png">
+        <div>
+            <h2>সংখ্যা</h2>
+            <p>১, ২, ৩... ১০০ লৈ শিকো আহা</p>
+        </div>
+    </a>
+</div>
+
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item">🏠 <span>Home</span></a>
+    <a href="learning.html" class="nav-item active">📚 <span>Learning</span></a>
+    <a href="profile.html" class="nav-item">👤 <span>Profile</span></a>
+</nav>
+
+</body>
+</html>
