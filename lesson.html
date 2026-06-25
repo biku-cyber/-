@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="as">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পাঠ - আখৰ ঘৰ</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .lesson-box {
+            background: white;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .big-letter { font-size: 80px; color: var(--primary); margin: 10px 0; }
+        .word-text { font-size: 24px; color: #555; margin-bottom: 20px; }
+        .progress-bar { height: 10px; background: #ddd; border-radius: 5px; margin: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.3s; }
+        .controls { display: flex; justify-content: space-between; padding: 0 20px; }
+        .btn-nav { padding: 15px 25px; border-radius: 20px; border: none; background: #eee; font-weight: bold; }
+        .btn-next { background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="categoryTitle">শিকো আহা</h1>
+    <p id="progressText">১ / ১১</p>
+</header>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="lesson-box">
+    <img id="itemImg" src="" style="width: 150px; height: 150px; object-fit: contain;">
+    <div id="itemLetter" class="big-letter">অ</div>
+    <div id="itemWord" class="word-text">অজগৰ</div>
+    <button onclick="playSound()" style="background: #f0f0f0; border: none; padding: 15px; border-radius: 50%; font-size: 24px; cursor: pointer;">🔊</button>
+</div>
+
+<div class="controls">
+    <button class="btn-nav" onclick="prevItem()">পাছলৈ</button>
+    <button class="btn-nav btn-next" onclick="nextItem()">আগলে</button>
+</div>
+
+<script>
+    // ডাটা ইয়াতে ইনলাইন কৰা হৈছে যাতে আপুনি সহজে ব্যৱহাৰ কৰিব পাৰে
+    const swaraData = [
+        { letter: "অ", word: "অজগৰ", img: "assets/swara/swara01.png", audio: "assets/audio/swara/swara01.mp3" },
+        { letter: "আ", word: "আম", img: "assets/swara/swara02.png", audio: "assets/audio/swara/swara02.mp3" },
+        // ... বাকী ডাটা ইয়াতে যোগ কৰক
+    ];
+
+    const vyanjanData = [
+        { letter: "ক", word: "কবিতা", img: "assets/vyanjan/vyanjan01.png", audio: "assets/audio/vyanjan/vyanjan01.mp3" },
+        // ... বাকী ডাটা ইয়াতে যোগ কৰক
+    ];
+
+    const numberData = Array.from({length: 100}, (_, i) => ({
+        letter: (i+1).toLocaleString('as-IN'),
+        word: "সংখ্যা",
+        img: `assets/numbers/number${String(i+1).padStart(3, '0')}.png`,
+        audio: `assets/audio/numbers/number${String(i+1).padStart(3, '0')}.mp3`
+    }));
+
+    let currentData = [];
+    let currentIndex = 0;
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+
+    if(type === 'swara') currentData = swaraData;
+    else if(type === 'vyanjan') currentData = vyanjanData;
+    else currentData = numberData;
+
+    function updateUI() {
+        const item = currentData[currentIndex];
+        document.getElementById('itemLetter').innerText = item.letter;
+        document.getElementById('itemWord').innerText = item.word;
+        document.getElementById('itemImg').src = item.img;
+        document.getElementById('progressText').innerText = `${currentIndex + 1} / ${currentData.length}`;
+        
+        const progress = ((currentIndex + 1) / currentData.length) * 100;
+        document.getElementById('progressFill').style.width = progress + "%";
+        
+        // Progress Save
+        localStorage.setItem(`${type}_progress`, currentIndex + 1);
+    }
+
+    function nextItem() {
+        if (currentIndex < currentData.length - 1) {
+            currentIndex++;
+            updateUI();
+        } else {
+            alert("বৰ ধুনীয়া! আপুনি এই পাঠটো সম্পূৰ্ণ কৰিলে।");
+            window.location.href = "index.html";
+        }
+    }
+
+    function prevItem() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateUI();
+        }
+    }
+
+    function playSound() {
+        const audio = new Audio(currentData[currentIndex].audio);
+        audio.play();
+    }
+
+    updateUI();
+</script>
+
+</body>
+</html>
