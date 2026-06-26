@@ -8,29 +8,59 @@
   color: var(--secondary);
 }
 
+/* গ্ৰীড লেআউট - ম’বাইলৰ বাবে ৪টা কলাম */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 10px;
 }
 
+/* সৰু স্ক্ৰীণ হ’লে যাতে ভাঙি নাযায় */
+@media (max-width: 360px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* বৰ্গাকৃতিৰ প্লেফুল কাৰ্ড */
 .dashboard-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-medium);
-  padding: 20px 10px;
-  text-align: center;
-  box-shadow: var(--shadow);
+  background: var(--white);
+  border-radius: 20px;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid rgba(0, 0, 0, 0.03);
+  transition: var(--bounce-transition);
+  aspect-ratio: 1 / 1.15; /* কাৰ্ডখন থিয়কৈ ৰাখিবলৈ */
 }
 
+.dashboard-card:hover, .dashboard-card:active {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-md);
+  background: #FFFDE7; /* চুই দিলে পাতল হালধীয়া আভা */
+  border-color: var(--secondary);
+}
+
+/* কাৰ্ডৰ ভিতৰৰ ছবি */
+.dashboard-card img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+
+/* কাৰ্ডৰ ভিতৰৰ আখৰ বা সংখ্যা */
 .dashboard-card span {
-  display: block;
-  font-size: 32px;
+  font-size: 22px;
   font-weight: bold;
   color: var(--text-main);
+  display: block;
 }
+
 
 .learn-btn-wrap {
   margin-top: 40px;
