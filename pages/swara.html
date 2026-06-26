@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html lang="as">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>স্বরবৰ্ণ - আখৰ ঘৰ</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>স্বৰবৰ্ণ - আখৰ ঘৰ</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
-<header>
-    <h1>স্বরবৰ্ণ</h1>
-    <p>১১ টা অসমীয়া স্বরবৰ্ণ</p>
-</header>
+  <header class="dashboard-header">
+    <h1>স্বৰবৰ্ণ</h1>
+    <p>১১ টা অসমীয়া স্বৰবৰ্ণ</p>
+  </header>
 
-<div id="dashboardGrid" class="grid-container">
-    <!-- JS ৰ জৰিয়তে কার্ডবোৰ ইয়াতে আহিব -->
-</div>
+  <div id="dashboardGrid" class="dashboard-grid"></div>
 
-<button class="btn-main" onclick="startLearning('swara')">পাঠ আৰম্ভ কৰক 🚀</button>
+  <div class="learn-btn-wrap">
+    <button class="learn-btn interactive-tap" onclick="startLearning('swara')">শিকো আহা 🚀</button>
+  </div>
 
-<script>const dashboardType = "swara";</script>
-<script src="js/dashboard.js"></script>
-
-<nav class="bottom-nav">
-    <a href="index.html" class="nav-item">🏠 <span>Home</span></a>
-    <a href="learning.html" class="nav-item">📚 <span>Learning</span></a>
-    <a href="profile.html" class="nav-item">👤 <span>Profile</span></a>
-</nav>
-
+  <script>const dashboardType = "swara";</script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
