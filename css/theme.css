@@ -1,0 +1,42 @@
+:root {
+  --primary: #FF6B6B;
+  --secondary: #4D96FF;
+  --success: #6BCB77;
+  --warning: #FFD93D;
+  --background: #FFF5E4;
+  --card-bg: #FFFFFF;
+  --text-main: #2C3E50;
+  --shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  --radius-large: 32px;
+  --radius-medium: 20px;
+  --font-kids: 'Comic Sans MS', 'Handlee', sans-serif;
+}
+
+/* কোমল পপ-আপ আৰু টেপ এনিমেচন */
+@keyframes bubblePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounceSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(-10%); }
+  50% { transform: translateX(10%); }
+  100% { transform: translateX(-10%); }
+}
+
+/* গ্ল’বেল সক্ৰিয় টেপ ইফেক্ট */
+.interactive-tap {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.interactive-tap:active {
+  transform: scale(0.90) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
