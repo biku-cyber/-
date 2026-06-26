@@ -11,13 +11,13 @@ async function loadDashboard() {
         const res = await fetch(jsonFile);
         const data = await res.json();
 
-        grid.innerHTML = ""; // পুৰণি ব্লেন্ক কাৰ্ডবোৰ চাফা কৰিবলৈ
+        grid.innerHTML = ""; // পুৰণি ব্লেন্ক কাৰ্ড চাফা কৰিবলৈ
 
         data.forEach((item, i) => {
             const card = document.createElement("div");
             card.className = "dashboard-card";
             
-            // কাৰ্ডত ক্লিক কৰিলে পোনে পোনে সেইটো লেচনলৈ লৈ যাব
+            // কাৰ্ডত ক্লিক কৰিলে পোনে পোনে সেইটো নম্বৰ/আখৰৰ লেচনলৈ লৈ যাব
             card.onclick = () => {
                 window.location.href = `lesson.html?type=${dashboardType}&index=${i}`;
             };
@@ -29,16 +29,16 @@ async function loadDashboard() {
             grid.appendChild(card);
         });
     } catch (err) {
-        console.error("ডাটা লোড কৰোঁতে ভুল হৈছে:", err);
+        console.error("ড্যাশবৰ্ড ডাটা ল’ড কৰোঁতে ভুল হৈছে:", err);
     }
 }
 
-// 'শিকো আহা' বুটামৰ বাবে ফাংচন (যিটো আপোনাৰ মিছ হৈ আছিল)
+// 'শিকো আহা' বুটামৰ বাবে ফাংচন
 function startLearning(type) {
     window.location.href = `lesson.html?type=${type}&index=0`;
 }
 
-// পেজটো ল’ড হ’লেই ড্যাশবৰ্ড ৰেণ্ডাৰ কৰিব
+// পেজ ল’ড হ’লেই এইটো ৰান হ’ব
 if (typeof dashboardType !== 'undefined') {
     loadDashboard();
 }
