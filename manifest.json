@@ -1,0 +1,14 @@
+{
+  "name": "আখৰ ঘৰ - Assamese Learning App",
+  "short_name": "আখৰ ঘৰ",
+  "description": "শিশুসকলৰ বাবে অসমীয়া আখৰ শিকাৰ আটাইতকৈ সহজ এপ",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF5E4",
+  "theme_color": "#FF6B6B",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
