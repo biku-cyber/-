@@ -9,27 +9,38 @@
 <body>
 
     <div class="lesson-container">
+        <!-- প্ৰগ্ৰেছ বাৰ -->
         <div class="progress-wrap">
             <div id="progressBar"></div>
         </div>
         
-        <div class="progress-text">
+        <div class="progress-text" style="text-align: center; margin-top: 5px; font-weight: bold; color: #555;">
             <span id="currentCount">1</span> / <span id="totalCount">0</span>
         </div>
 
+        <!-- মেইন লেচন কাৰ্ড -->
         <div class="lesson-card">
             <img id="lessonImage" class="lesson-image" src="" alt="Lesson Image">
             <h1 id="lessonLetter"></h1>
             <p id="lessonPronunciation"></p>
             <button id="soundBtn" class="sound-btn">🔊</button>
+
+            <!-- 🖍️ নতুনকৈ যোগ কৰা ট্ৰেচিং পেড (Tracing Pad) -->
+            <div class="tracing-container" style="position: relative; margin-top: 20px; width: 100%;">
+                <p style="margin: 0 0 8px 0; font-size: 14px; color: #7f8c8d; font-weight: bold; text-align: center;">তলত আঙুলিৰে আখৰটো লিখা ✍️</p>
+                <canvas id="tracingCanvas" style="border: 3px dashed #64B5F6; border-radius: 15px; background: #fff; width: 100%; height: 220px; cursor: crosshair; touch-action: none;"></canvas>
+                <button id="clearBtn" style="position: absolute; bottom: 10px; right: 10px; padding: 6px 14px; background: #ff5252; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(255,82,82,0.3);">মচি দিয়া 🧹</button>
+            </div>
         </div>
 
+        <!-- নেভিগেচন বুটামসমূহ -->
         <div class="nav-buttons" style="display: flex; justify-content: space-between; margin-top: 20px; gap: 15px;">
-            <button id="prevBtn" style="flex: 1; padding: 15px; border-radius: 15px; border: none; background: #ddd; font-weight: bold; font-size: 16px; cursor: pointer;">Previous</button>
+            <button id="prevBtn" style="flex: 1; padding: 15px; border-radius: 15px; border: none; background: #ECEFF1; color: #546E7A; font-weight: bold; font-size: 16px; cursor: pointer;">Previous</button>
             <button id="nextBtn" style="flex: 1; padding: 15px; border-radius: 15px; border: none; background: #2196f3; color: white; font-weight: bold; font-size: 16px; cursor: pointer;">Next</button>
         </div>
     </div>
 
+    <!-- মেইন ইঞ্জীন্ জাভাস্ক্ৰীপ্ট -->
     <script src="js/lesson.js"></script>
 </body>
 </html>
