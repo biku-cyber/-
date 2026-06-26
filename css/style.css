@@ -1,112 +1,114 @@
-:root {
-    --primary: #4fc3f7;
-    --secondary: #ffb74d;
-    --bg-color: #e3f2fd;
-    --card-bg: #ffffff;
-    --text-color: #2c3e50;
-    --success: #81c784;
-}
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Hind Siliguri', sans-serif; /* Assamese friendly font */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-kids), sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-    padding-bottom: 80px;
+  background: var(--background);
+  color: var(--text-main);
+  overflow-x: hidden;
+  padding-bottom: 110px;
+  line-height: 1.6;
 }
 
-/* Header Style */
-header {
-    background: linear-gradient(135deg, var(--primary), #81d4fa);
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+/* হিৰো আৰু নামাকৰণ */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
 }
 
-header h1 {
-    color: white;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+.main-logo {
+  width: 160px;
+  height: auto;
+  animation: bounceSoft 4s ease-in-out infinite;
 }
 
-header p {
-    color: #f0f0f0;
-    font-size: 1.1rem;
+.hero h1 {
+  font-size: 36px;
+  color: var(--primary);
+  margin-top: 15px;
+  text-shadow: 2px 2px 0px #fff;
 }
 
-/* Grid Layout for Dashboards */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 15px;
-    padding: 15px;
+.hero p {
+  font-size: 18px;
+  color: #7f8c8d;
+  margin-top: 5px;
 }
 
-.card {
-    background: var(--card-bg);
-    border-radius: 15px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+/* শ্ৰেণীসমূহ (Categories) */
+.categories {
+  padding: 20px;
+  display: grid;
+  gap: 25px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.card:active {
-    transform: scale(0.9);
+.category-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-large);
+  padding: 30px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-main);
+  box-shadow: var(--shadow);
+  border: 4px solid transparent;
 }
 
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.category-card:nth-child(1) { border-color: var(--primary); }
+.category-card:nth-child(2) { border-color: var(--secondary); }
+.category-card:nth-child(3) { border-color: var(--warning); }
+
+.category-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
 
-/* Bottom Navigation */
+.category-card h2 {
+  font-size: 28px;
+}
+
+/* তলৰ নেভিগেচন বাৰ */
 .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    display: flex;
-    justify-content: space-around;
-    padding: 12px;
-    box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
-    z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 999;
+  border: 2px solid #fff;
 }
 
 .nav-item {
-    text-decoration: none;
-    color: #90a4ae;
-    font-size: 0.9rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-decoration: none;
+  color: #95a5a6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nav-item img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
 }
 
 .nav-item.active {
-    color: var(--primary);
-    font-weight: bold;
-}
-
-/* Common Button */
-.btn-main {
-    background: var(--secondary);
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: block;
-    margin: 20px auto;
+  color: var(--primary);
 }
