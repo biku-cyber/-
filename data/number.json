@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "letter": "১",
+    "pronunciation": "Ekh",
+    "word": "এক",
+    "english": "One",
+    "image": "assets/numbers/number001.png",
+    "audio": "assets/audio/numbers/number001.mp3"
+  },
+  {
+    "id": 2,
+    "letter": "২",
+    "pronunciation": "Dui",
+    "word": "দুই",
+    "english": "Two",
+    "image": "assets/numbers/number002.png",
+    "audio": "assets/audio/numbers/number002.mp3"
+  },
+  {
+    "id": 3,
+    "letter": "৩",
+    "pronunciation": "Tini",
+    "word": "তিনি",
+    "english": "Three",
+    "image": "assets/numbers/number003.png",
+    "audio": "assets/audio/numbers/number003.mp3"
+  }
+]
