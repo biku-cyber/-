@@ -12,7 +12,7 @@ const progressBar = document.getElementById("progressBar");
 const currentCount = document.getElementById("currentCount");
 const totalCount = document.getElementById("totalCount");
 
-// লেচন আৰম্ভ কৰাৰ মেইন ফাংচন
+// JSON-ৰ পৰা ডাটা লোড কৰা মেইন ফাংচন
 async function initLesson() {
     try {
         let jsonFile = "";
@@ -26,11 +26,11 @@ async function initLesson() {
         totalCount.innerText = lessonData.length;
         renderLesson();
     } catch (err) {
-        console.error("লেচন ডাটা লোড হোৱা নাই:", err);
+        console.error("লেচন ডাটা ল’ড কৰিব পৰা নগ’ল:", err);
     }
 }
 
-// স্ক্ৰীণত আখৰ আৰু ছবি দেখুৱাবলৈ
+// স্ক্ৰীণত ডাটা দেখুৱাবলৈ
 function renderLesson() {
     if (!lessonData || lessonData.length === 0) return;
     let item = lessonData[index];
@@ -77,11 +77,11 @@ document.getElementById("soundBtn").addEventListener("click", () => {
 
     if (lessonData[index] && lessonData[index].audio) {
         let audio = new Audio(lessonData[index].audio);
-        audio.play().catch(e => console.log("অডিঅ’ চলিবলৈ ফাইল পোৱা নাই"));
+        audio.play().catch(e => console.log("অডিঅ’ ফাইলটো বিচাৰি পোৱা নগ’ল"));
     }
 });
 
-// লেচন শেষ হ’লে ওলোৱা স্ক্ৰীণ
+// পাঠ শেষ হ’লে ওলোৱা স্ক্ৰীণ
 function showCompletion() {
     let nextCategory = "";
     let typeName = "";
@@ -106,11 +106,4 @@ function showCompletion() {
         </div>
     `;
     
-    // যদি confetti.js প্ৰজেক্টত আছে, ইয়াত ট্ৰিপাৰ কৰিব পাৰে
-    if(typeof launchConfetti === 'function') {
-        launchConfetti();
-    }
-}
-
-// এইটোৱে লেচনটো আৰম্ভ কৰিব
-initLesson();
+    if(typeof launchConfetti ===
