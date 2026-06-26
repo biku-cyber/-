@@ -1,131 +1,116 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get("type") || "swara";
-    let index = parseInt(params.get("index")) || 0;
-    let lessonData = [];
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type");
+let index = parseInt(params.get("index")) || 0;
 
-    // DOM উপাদানসমূহ নিশ্চিত কৰা
-    const image = document.getElementById("lessonImage");
-    const letter = document.getElementById("lessonLetter");
-    const pronunciation = document.getElementById("lessonPronunciation");
-    const progressBar = document.getElementById("progressBar");
-    const currentCount = document.getElementById("currentCount");
-    const totalCount = document.getElementById("totalCount");
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-    const soundBtn = document.getElementById("soundBtn");
+let lessonData = [];
 
-    // JSON ফাইলৰ পৰা ডাটা সুৰক্ষিতভাৱে অনাৰ ব্যৱস্থা
+// HTML উপাদানসমূহ
+const image = document.getElementById("lessonImage");
+const letter = document.getElementById("lessonLetter");
+const pronunciation = document.getElementById("lessonPronunciation");
+const progressBar = document.getElementById("progressBar");
+const currentCount = document.getElementById("currentCount");
+const totalCount = document.getElementById("totalCount");
+
+// লেচন আৰম্ভ কৰাৰ মেইন ফাংচন
+async function initLesson() {
     try {
-        const response = await fetch(`data/${type}.json`);
-        lessonData = await response.json();
-        if (lessonData.length > 0) {
-            totalCount.innerText = lessonData.length;
-            renderLesson();
-        }
-    } catch (error) {
-        console.error("ডাটা লোড কৰিবলৈ ব্যৰ্থ হ’ল:", error);
-        return;
+        let jsonFile = "";
+        if (type === "swara") jsonFile = "swara.json";
+        else if (type === "vyanjan") jsonFile = "vyanjan.json";
+        else if (type === "numbers") jsonFile = "number.json";
+
+        const res = await fetch(jsonFile);
+        lessonData = await res.json();
+
+        totalCount.innerText = lessonData.length;
+        renderLesson();
+    } catch (err) {
+        console.error("লেচন ডাটা লোড হোৱা নাই:", err);
     }
+}
 
-    function renderLesson() {
-        if (index < 0) index = 0;
-        if (index >= lessonData.length) return;
+// স্ক্ৰীণত আখৰ আৰু ছবি দেখুৱাবলৈ
+function renderLesson() {
+    if (!lessonData || lessonData.length === 0) return;
+    let item = lessonData[index];
 
-        let item = lessonData[index];
-        image.src = item.image;
-        letter.innerText = item.letter;
-        pronunciation.innerText = item.pronunciation;
-        currentCount.innerText = index + 1;
+    image.src = item.image;
+    letter.innerText = item.letter;
+    pronunciation.innerText = item.pronunciation;
+    currentCount.innerText = index + 1;
 
-        let progress = ((index + 1) / lessonData.length) * 100;
-        progressBar.style.width = progress + "%";
-        saveProgress();
+    // প্ৰগ্ৰেছ বাৰ আপডেট
+    let progress = ((index + 1) / lessonData.length) * 100;
+    progressBar.style.width = progress + "%";
+
+    saveProgress();
+}
+
+// লোকাল ষ্ট’ৰেজত প্ৰগ্ৰেছ ছেভ কৰিবলৈ
+function saveProgress() {
+    localStorage.setItem(`${type}_progress`, index + 1);
+}
+
+// Next বুটাম
+document.getElementById("nextBtn").addEventListener("click", () => {
+    if (index < lessonData.length - 1) {
+        index++;
+        renderLesson();
+    } else {
+        showCompletion();
     }
-
-    function saveProgress() {
-        localStorage.setItem(`${type}_progress`, index + 1);
-    }
-
-    nextBtn.addEventListener("click", () => {
-        if (index < lessonData.length - 1) {
-            index++;
-            renderLesson();
-        } else {
-            showCompletion();
-        }
-    });
-
-    prevBtn.addEventListener("click", () => {
-        if (index > 0) {
-            index--;
-            renderLesson();
-        }
-    });
-
-    soundBtn.addEventListener("click", () => {
-        const soundEnabled = localStorage.getItem("soundEnabled");
-        if (soundEnabled === "false") return;
-
-        if (lessonData[index] && lessonData[index].audio) {
-            let audio = new Audio(lessonData[index].audio);
-            audio.play().catch(e => console.log("শব্দ বজাব পৰা নগ’ল:", e));
-        }
-    });
-
-    function showCompletion() {
-        let nextCategory = "";
-        let nextLabel = "";
-        let typeInAssamese = "";
-
-        if (type === "swara") {
-            nextCategory = "vyanjan";
-            nextLabel = "ব্যঞ্জনবৰ্ণ শিকো আহা 🚀";
-            typeInAssamese = "স্বৰবৰ্ণ";
-        } else if (type === "vyanjan") {
-            nextCategory = "numbers";
-            nextLabel = "संख्या শিকো আহা 🚀";
-            typeInAssamese = "ব্যঞ্জনবৰ্ণ";
-        } else {
-            typeInAssamese = "সংখ্যা";
-        }
-
-        // আনন্দ ফুৰ্তিৰ বাবে কনফেটি ইফেক্ট চলোৱা হ’ল
-        if (typeof launchConfetti === "function") {
-            launchConfetti();
-        }
-
-        // সম্পূৰ্ণ অসমীয়া অভিনন্দন স্ক্ৰীণ
-        document.body.innerHTML = `
-            <div class="complete-screen" style="text-align:center; padding:60px 20px; font-family: 'Comic Sans MS', sans-serif;">
-                <h1 style="font-size:52px; color:#6BCB77; margin-bottom:20px; animation: bounce 1s infinite;">🎉 বৰ ধুনীয়া!</h1>
-                <p style="font-size:26px; margin-bottom:40px; color:#2C3E50;">তুমি সফলতাৰে সকলো <b>${typeInAssamese}</b> শিকি শেষ কৰিলা।</p>
-                
-                <div style="display:flex; flex-direction:column; gap:18px; max-width:320px; margin:0 auto;">
-                    <button class="interactive-tap" onclick="window.location.href='index.html'" style="background:#FF6B6B; color:white; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(255,107,107,0.3);">🏠 মূল ঘৰলৈ ব’লা</button>
-                    ${
-                        type !== "numbers"
-                        ? `<button class="interactive-tap" onclick="window.location.href='${nextCategory}.html'" style="background:#4D96FF; color:white; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(77,150,255,0.3);">${nextLabel}</button>`
-                        : `<button class="interactive-tap" onclick="window.location.href='numbers.html'" style="background:#FFD93D; color:#2C3E50; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(255,217,61,0.3);">🔄 আকৌ শিকো ব’লা</button>`
-                    }
-                </div>
-            </div>
-        `;
-    }
-
-    // সোঁৱে-বাওঁৱে ছুইপ কৰাৰ জেষ্টাৰ (Touch Swipe)
-    let touchStart = 0;
-    document.addEventListener("touchstart", e => {
-        touchStart = e.touches[0].clientX;
-    });
-
-    document.addEventListener("touchend", e => {
-        let touchEnd = e.changedTouches[0].clientX;
-        if (touchStart - touchEnd > 60) {
-            nextBtn.click();
-        }
-        if (touchEnd - touchStart > 60) {
-            prevBtn.click();
-        }
-    });
 });
+
+// Previous বুটাম
+document.getElementById("prevBtn").addEventListener("click", () => {
+    if (index > 0) {
+        index--;
+        renderLesson();
+    }
+});
+
+// অডিঅ’ প্লেয়াৰ
+document.getElementById("soundBtn").addEventListener("click", () => {
+    const soundEnabled = localStorage.getItem("soundEnabled");
+    if (soundEnabled === "false") return;
+
+    if (lessonData[index] && lessonData[index].audio) {
+        let audio = new Audio(lessonData[index].audio);
+        audio.play().catch(e => console.log("অডিঅ’ চলিবলৈ ফাইল পোৱা নাই"));
+    }
+});
+
+// লেচন শেষ হ’লে ওলোৱা স্ক্ৰীণ
+function showCompletion() {
+    let nextCategory = "";
+    let typeName = "";
+    
+    if (type === "swara") { nextCategory = "vyanjan"; typeName = "স্বরবৰ্ণ"; }
+    else if (type === "vyanjan") { nextCategory = "numbers"; typeName = "ব্যঞ্জনবৰ্ণ"; }
+    else if (type === "numbers") { typeName = "সংখ্যা"; }
+
+    document.body.innerHTML = `
+        <div class="complete-screen" style="text-align:center; padding:60px 20px; font-family:sans-serif; background:#F5FBFF; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <h1 style="font-size:40px; color:#1976d2; margin-bottom:10px;">🎉 বঢ়িয়া কাম!</h1>
+            <p style="font-size:20px; color:#555; margin-bottom:30px;">আপুনি সফলভাৱে <b>${typeName}</b> শিকা সম্পূৰ্ণ কৰিলে।</p>
+            
+            <div style="display:flex; gap:15px;">
+                <button onclick="window.location.href='index.html'" style="padding:15px 30px; font-size:18px; font-weight:bold; border-radius:15px; border:none; background:#ECEFF1; color:#546E7A; cursor:pointer;">ঘৰলৈ ব’লা</button>
+                ${
+                    type !== "numbers"
+                    ? `<button onclick="window.location.href='${nextCategory}.html'" style="padding:15px 30px; font-size:18px; font-weight:bold; border-radius:15px; border:none; background:#64B5F6; color:white; cursor:pointer;">পিছৰ পাঠ</button>`
+                    : `<button onclick="window.location.href='number.html'" style="padding:15px 30px; font-size:18px; font-weight:bold; border-radius:15px; border:none; background:#FFD54F; color:#2C3E50; cursor:pointer;">আকৌ শিকো</button>`
+                }
+            </div>
+        </div>
+    `;
+    
+    // যদি confetti.js প্ৰজেক্টত আছে, ইয়াত ট্ৰিপাৰ কৰিব পাৰে
+    if(typeof launchConfetti === 'function') {
+        launchConfetti();
+    }
+}
+
+// এইটোৱে লেচনটো আৰম্ভ কৰিব
+initLesson();
