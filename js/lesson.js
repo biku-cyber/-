@@ -1,82 +1,131 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type") || "swara";
     let index = parseInt(params.get("index")) || 0;
-    let dataset = [];
+    let lessonData = [];
 
-    // নিশ্চিতভাৱে উপাদানসমূহ আহৰণ কৰা
+    // DOM উপাদানসমূহ নিশ্চিত কৰা
     const image = document.getElementById("lessonImage");
     const letter = document.getElementById("lessonLetter");
     const pronunciation = document.getElementById("lessonPronunciation");
     const progressBar = document.getElementById("progressBar");
     const currentCount = document.getElementById("currentCount");
     const totalCount = document.getElementById("totalCount");
-    const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
     const soundBtn = document.getElementById("soundBtn");
 
-    async function loadLessonData() {
-        try {
-            const response = await fetch(`data/${type}.json`);
-            dataset = await response.json();
-            if (dataset.length > 0) {
-                totalCount.innerText = dataset.length;
-                renderCard();
-            }
-        } catch (error) {
-            console.error("ভুল হৈছে:", error);
+    // JSON ফাইলৰ পৰা ডাটা সুৰক্ষিতভাৱে অনাৰ ব্যৱস্থা
+    try {
+        const response = await fetch(`data/${type}.json`);
+        lessonData = await response.json();
+        if (lessonData.length > 0) {
+            totalCount.innerText = lessonData.length;
+            renderLesson();
         }
+    } catch (error) {
+        console.error("ডাটা লোড কৰিবলৈ ব্যৰ্থ হ’ল:", error);
+        return;
     }
 
-    function renderCard() {
+    function renderLesson() {
         if (index < 0) index = 0;
-        if (index >= dataset.length) {
-            showCompletionScreen();
-            return;
-        }
+        if (index >= lessonData.length) return;
 
-        const item = dataset[index];
+        let item = lessonData[index];
+        image.src = item.image;
         letter.innerText = item.letter;
         pronunciation.innerText = item.pronunciation;
-        image.src = item.image;
         currentCount.innerText = index + 1;
 
-        const progressPercent = ((index + 1) / dataset.length) * 100;
-        progressBar.style.width = `${progressPercent}%`;
-
+        let progress = ((index + 1) / lessonData.length) * 100;
+        progressBar.style.width = progress + "%";
         saveProgress();
     }
 
     function saveProgress() {
-        const savedProgress = parseInt(localStorage.getItem(`${type}_progress`)) || 0;
-        const currentProgress = index + 1;
-        // কেৱল বেছি হ’লেহে সংৰক্ষণ হ’ব, পিছুৱাই গ’লে অগ্ৰগতি হ্ৰাস নহয়
-        if (currentProgress > savedProgress) {
-            localStorage.setItem(`${type}_progress`, currentProgress);
-        }
+        localStorage.setItem(`${type}_progress`, index + 1);
     }
 
-    function showCompletionScreen() {
-        const container = document.querySelector(".lesson-container");
-        container.innerHTML = `
-            <div class="lesson-card" style="animation: bubblePop 0.5s ease;">
-                <h1 style="font-size:48px; color:var(--success);">অসাধাৰণ! 🎉</h1>
-                <p style="font-size:22px; margin:20px 0;">তুমি এই ভাগটো সম্পূৰ্ণ কৰিলা।</p>
-                <button class="interactive-tap" onclick="window.location.href='learning.html'" style="border:none; background:var(--primary); color:white; padding:15px 30px; font-size:20px; border-radius:30px; font-weight:bold;">অইন এটা শিকো ব’লা</button>
+    nextBtn.addEventListener("click", () => {
+        if (index < lessonData.length - 1) {
+            index++;
+            renderLesson();
+        } else {
+            showCompletion();
+        }
+    });
+
+    prevBtn.addEventListener("click", () => {
+        if (index > 0) {
+            index--;
+            renderLesson();
+        }
+    });
+
+    soundBtn.addEventListener("click", () => {
+        const soundEnabled = localStorage.getItem("soundEnabled");
+        if (soundEnabled === "false") return;
+
+        if (lessonData[index] && lessonData[index].audio) {
+            let audio = new Audio(lessonData[index].audio);
+            audio.play().catch(e => console.log("শব্দ বজাব পৰা নগ’ল:", e));
+        }
+    });
+
+    function showCompletion() {
+        let nextCategory = "";
+        let nextLabel = "";
+        let typeInAssamese = "";
+
+        if (type === "swara") {
+            nextCategory = "vyanjan";
+            nextLabel = "ব্যঞ্জনবৰ্ণ শিকো আহা 🚀";
+            typeInAssamese = "স্বৰবৰ্ণ";
+        } else if (type === "vyanjan") {
+            nextCategory = "numbers";
+            nextLabel = "संख्या শিকো আহা 🚀";
+            typeInAssamese = "ব্যঞ্জনবৰ্ণ";
+        } else {
+            typeInAssamese = "সংখ্যা";
+        }
+
+        // আনন্দ ফুৰ্তিৰ বাবে কনফেটি ইফেক্ট চলোৱা হ’ল
+        if (typeof launchConfetti === "function") {
+            launchConfetti();
+        }
+
+        // সম্পূৰ্ণ অসমীয়া অভিনন্দন স্ক্ৰীণ
+        document.body.innerHTML = `
+            <div class="complete-screen" style="text-align:center; padding:60px 20px; font-family: 'Comic Sans MS', sans-serif;">
+                <h1 style="font-size:52px; color:#6BCB77; margin-bottom:20px; animation: bounce 1s infinite;">🎉 বৰ ধুনীয়া!</h1>
+                <p style="font-size:26px; margin-bottom:40px; color:#2C3E50;">তুমি সফলতাৰে সকলো <b>${typeInAssamese}</b> শিকি শেষ কৰিলা।</p>
+                
+                <div style="display:flex; flex-direction:column; gap:18px; max-width:320px; margin:0 auto;">
+                    <button class="interactive-tap" onclick="window.location.href='index.html'" style="background:#FF6B6B; color:white; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(255,107,107,0.3);">🏠 মূল ঘৰলৈ ব’লা</button>
+                    ${
+                        type !== "numbers"
+                        ? `<button class="interactive-tap" onclick="window.location.href='${nextCategory}.html'" style="background:#4D96FF; color:white; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(77,150,255,0.3);">${nextLabel}</button>`
+                        : `<button class="interactive-tap" onclick="window.location.href='numbers.html'" style="background:#FFD93D; color:#2C3E50; border:none; padding:18px; font-size:22px; font-weight:bold; border-radius:40px; cursor:pointer; box-shadow: 0 8px 15px rgba(255,217,61,0.3);">🔄 আকৌ শিকো ব’লা</button>`
+                    }
+                </div>
             </div>
         `;
     }
 
-    nextBtn.addEventListener("click", () => { index++; renderCard(); });
-    prevBtn.addEventListener("click", () => { if (index > 0) { index--; renderCard(); } });
-    
-    soundBtn.addEventListener("click", () => {
-        const isSoundOn = localStorage.getItem("soundEffects") !== "false";
-        if (isSoundOn && dataset[index]?.audio) {
-            const audio = new Audio(dataset[index].audio);
-            audio.play();
-        }
+    // সোঁৱে-বাওঁৱে ছুইপ কৰাৰ জেষ্টাৰ (Touch Swipe)
+    let touchStart = 0;
+    document.addEventListener("touchstart", e => {
+        touchStart = e.touches[0].clientX;
     });
 
-    loadLessonData();
+    document.addEventListener("touchend", e => {
+        let touchEnd = e.changedTouches[0].clientX;
+        if (touchStart - touchEnd > 60) {
+            nextBtn.click();
+        }
+        if (touchEnd - touchStart > 60) {
+            prevBtn.click();
+        }
+    });
 });
