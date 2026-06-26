@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "letter": "অ",
+    "pronunciation": "O",
+    "word": "অজগৰ",
+    "english": "Python",
+    "image": "assets/swara/swara01.png",
+    "audio": "assets/audio/swara/swara01.mp3"
+  },
+  {
+    "id": 2,
+    "letter": "আ",
+    "pronunciation": "Aa",
+    "word": "আম",
+    "english": "Mango",
+    "image": "assets/swara/swara02.png",
+    "audio": "assets/audio/swara/swara02.mp3"
+  },
+  {
+    "id": 3,
+    "letter": "ই",
+    "pronunciation": "I",
+    "word": "ইটা",
+    "english": "Brick",
+    "image": "assets/swara/swara03.png",
+    "audio": "assets/audio/swara/swara03.mp3"
+  },
+  {
+    "id": 4,
+    "letter": "ঈ",
+    "pronunciation": "Ee",
+    "word": "ঈশ্বৰ",
+    "english": "God",
+    "image": "assets/swara/swara04.png",
+    "audio": "assets/audio/swara/swara04.mp3"
+  },
+  {
+    "id": 5,
+    "letter": "উ",
+    "pronunciation": "U",
+    "word": "উট",
+    "english": "Camel",
+    "image": "assets/swara/swara05.png",
+    "audio": "assets/audio/swara/swara05.mp3"
+  },
+  {
+    "id": 6,
+    "letter": "ঊ",
+    "pronunciation": "Uu",
+    "word": "ঊৰ্মী",
+    "english": "Wave",
+    "image": "assets/swara/swara06.png",
+    "audio": "assets/audio/swara/swara06.mp3"
+  },
+  {
+    "id": 7,
+    "letter": "ঋ",
+    "pronunciation": "Ri",
+    "word": "ঋষি",
+    "english": "Sage",
+    "image": "assets/swara/swara07.png",
+    "audio": "assets/audio/swara/swara07.mp3"
+  },
+  {
+    "id": 8,
+    "letter": "এ",
+    "pronunciation": "E",
+    "word": "এন্দুৰ",
+    "english": "Rat",
+    "image": "assets/swara/swara08.png",
+    "audio": "assets/audio/swara/swara08.mp3"
+  },
+  {
+    "id": 9,
+    "letter": "ঐ",
+    "pronunciation": "Oi",
+    "word": "ঐৰাৱত",
+    "english": "Elephant",
+    "image": "assets/swara/swara09.png",
+    "audio": "assets/audio/swara/swara09.mp3"
+  },
+  {
+    "id": 10,
+    "letter": "ও",
+    "pronunciation": "O",
+    "word": "ওৰণি",
+    "english": "Veil",
+    "image": "assets/swara/swara10.png",
+    "audio": "assets/audio/swara/swara10.mp3"
+  },
+  {
+    "id": 11,
+    "letter": "ঔ",
+    "pronunciation": "Ou",
+    "word": "ঔষধ",
+    "english": "Medicine",
+    "image": "assets/swara/swara11.png",
+    "audio": "assets/audio/swara/swara11.mp3"
+  }
+]
