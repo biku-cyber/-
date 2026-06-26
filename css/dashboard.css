@@ -1,0 +1,50 @@
+.dashboard-header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 34px;
+  color: var(--secondary);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-medium);
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.dashboard-card span {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.learn-btn-wrap {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.learn-btn {
+  background: var(--success);
+  color: white;
+  border: none;
+  padding: 18px 50px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(107, 203, 119, 0.4);
+  animation: bounceSoft 3s infinite ease-in-out;
+}
