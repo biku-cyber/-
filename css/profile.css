@@ -1,0 +1,102 @@
+.profile-header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.profile-logo {
+  width: 110px;
+}
+
+.profile-header h1 {
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.section {
+  background: var(--card-bg);
+  padding: 25px 20px;
+  border-radius: var(--radius-large);
+  margin-bottom: 25px;
+  box-shadow: var(--shadow);
+}
+
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: var(--secondary);
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.progress-card {
+  background: var(--background);
+  padding: 15px 10px;
+  border-radius: var(--radius-medium);
+  text-align: center;
+}
+
+.progress-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.progress-card div {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.setting-item input[type="checkbox"] {
+  width: 50px;
+  height: 26px;
+  appearance: none;
+  background: #bdc3c7;
+  border-radius: 13px;
+  position: relative;
+  outline: none;
+  transition: 0.3s;
+}
+
+.setting-item input[type="checkbox"]:checked {
+  background: var(--success);
+}
+
+.setting-item input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+.setting-item input[type="checkbox"]:checked::before {
+  left: 26px;
+}
+
+#resetBtn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  background: #E74C3C;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: var(--radius-medium);
+}
