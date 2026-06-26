@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "letter": "ক",
+    "pronunciation": "Ko",
+    "word": "কল",
+    "english": "Banana",
+    "image": "assets/vyanjan/vyanjan01.png",
+    "audio": "assets/audio/vyanjan/vyanjan01.mp3"
+  },
+  {
+    "id": 2,
+    "letter": "খ",
+    "pronunciation": "Kho",
+    "word": "খৰম",
+    "english": "Sandal",
+    "image": "assets/vyanjan/vyanjan02.png",
+    "audio": "assets/audio/vyanjan/vyanjan02.mp3"
+  },
+  {
+    "id": 3,
+    "letter": "গ",
+    "pronunciation": "Go",
+    "word": "গৰু",
+    "english": "Cow",
+    "image": "assets/vyanjan/vyanjan03.png",
+    "audio": "assets/audio/vyanjan/vyanjan03.mp3"
+  },
+  {
+    "id": 4,
+    "letter": "ঘ",
+    "pronunciation": "Gho",
+    "word": "ঘৰ",
+    "english": "House",
+    "image": "assets/vyanjan/vyanjan04.png",
+    "audio": "assets/audio/vyanjan/vyanjan04.mp3"
+  },
+  {
+    "id": 5,
+    "letter": "ঙ",
+    "pronunciation": "Ngo",
+    "word": "ঙা",
+    "english": "Kingfisher Feed",
+    "image": "assets/vyanjan/vyanjan05.png",
+    "audio": "assets/audio/vyanjan/vyanjan05.mp3"
+  }
+]
