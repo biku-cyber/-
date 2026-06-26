@@ -1,70 +1,74 @@
 <!DOCTYPE html>
 <html lang="as">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোৰ প্ৰফাইল - আখৰ ঘৰ</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .profile-card { background: white; margin: 20px; padding: 20px; border-radius: 25px; text-align: center; }
-        .user-img { width: 100px; height: 100px; border-radius: 50%; border: 5px solid var(--primary); }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .stat-item { background: #f9f9f9; padding: 10px; border-radius: 15px; }
-        .stat-item h4 { font-size: 0.8rem; color: #666; }
-        .stat-item div { font-weight: bold; color: var(--primary); font-size: 1.2rem; }
-        .achievements { padding: 20px; }
-        .badge { background: #fff9c4; padding: 10px; border-radius: 10px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>মোৰ প্ৰফাইল</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 
-<header>
-    <h1>মোৰ পৰিচয়</h1>
-</header>
+  <header class="profile-header">
+    <img src="assets/logo/akhor-ghor-logo.png" class="profile-logo">
+    <h1>মোৰ ট্ৰেক ৰেকৰ্ড</h1>
+  </header>
 
-<div class="profile-card">
-    <img src="assets/svg/profile-avatar.svg" class="user-img" alt="User">
-    <h2 style="margin-top:10px;">সৰু মইনা</h2>
-    
-    <div class="stats-grid">
-        <div class="stat-item">
-            <h4>স্বৰবৰ্ণ</h4>
-            <div id="swaraPercent">0%</div>
-        </div>
-        <div class="stat-item">
-            <h4>ব্যঞ্জনবৰ্ণ</h4>
-            <div id="vyanjanPercent">0%</div>
-        </div>
-        <div class="stat-item">
-            <h4>সংখ্যা</h4>
-            <div id="numberPercent">0%</div>
-        </div>
+  <section class="section">
+    <h2>তোমাৰ অগ্ৰগতি</h2>
+    <div class="progress-grid">
+      <div class="progress-card">
+        <h3>স্বৰবৰ্ণ</h3>
+        <div id="swaraPercent">০%</div>
+      </div>
+      <div class="progress-card">
+        <h3>ব্যঞ্জনবৰ্ণ</h3>
+        <div id="vyanjanPercent">০%</div>
+      </div>
+      <div class="progress-card">
+        <h3>সংখ্যা</h3>
+        <div id="numberPercent">০%</div>
+      </div>
     </div>
-</div>
+  </section>
 
-<div class="achievements">
-    <h3>🏅 মোৰ সফলতাসমূহ</h3>
-    <div id="achievementList" style="margin-top:10px;">
-        <!-- Badges will appear here -->
+  <section class="section">
+    <h2>পুৰস্কাৰসমূহ 🏆</h2>
+    <div id="achievementList"></div>
+  </section>
+
+  <section class="section">
+    <h2>ছেটিংছ</h2>
+    <div class="setting-item">
+      <label>ৰাতিৰ মোড (Dark Mode)</label>
+      <input type="checkbox" id="darkMode">
     </div>
-</div>
+    <div class="setting-item">
+      <label>শব্দৰ প্ৰভাৱ (Audio)</label>
+      <input type="checkbox" id="soundToggle" checked>
+    </div>
+  </section>
 
-<button class="btn-main" style="background:#ef5350; font-size: 0.9rem;" onclick="resetProgress()">প্ৰগতি মচি পেলাওক (Reset)</button>
+  <section class="section">
+    <button id="resetBtn" class="interactive-tap">সকলো মচি পেলাওক (Reset)</button>
+  </section>
 
-<nav class="bottom-nav">
-    <a href="index.html" class="nav-item">🏠 <span>Home</span></a>
-    <a href="learning.html" class="nav-item">📚 <span>Learning</span></a>
-    <a href="profile.html" class="nav-item active">👤 <span>Profile</span></a>
-</nav>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item interactive-tap">
+      <img src="assets/svg/home.svg">
+      <span>ঘৰ</span>
+    </a>
+    <a href="learning.html" class="nav-item interactive-tap">
+      <img src="assets/svg/learn.svg">
+      <span>শিকো আহা</span>
+    </a>
+    <a href="profile.html" class="nav-item active interactive-tap">
+      <img src="assets/svg/profile.svg">
+      <span>মোৰ প্ৰফাইল</span>
+    </a>
+  </nav>
 
-<script src="js/profile.js"></script>
-<script>
-    function resetProgress() {
-        if(confirm("আপুনি সঁচাকৈ সকলো মচিব বিচাৰে নেকি?")) {
-            localStorage.clear();
-            location.reload();
-        }
-    }
-</script>
+  <script src="js/profile.js"></script>
 </body>
 </html>
