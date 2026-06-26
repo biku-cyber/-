@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="as">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আখৰ ঘৰ - Assamese Learning</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>আখৰ ঘৰ</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#FF6B6B">
 </head>
 <body>
 
-<header>
-    <img src="assets/logo/akhor-ghor-logo.png" style="width: 80px;" alt="Logo">
+  <header class="hero">
+    <img src="assets/logo/akhor-ghor-logo.png" class="main-logo" alt="ল’গ’">
     <h1>আখৰ ঘৰ</h1>
-    <p>অসমীয়া শিকো আহক অতি সহজে</p>
-</header>
+    <p>অসমীয়া বৰ্ণমালা</p>
+  </header>
 
-<div class="menu-container" style="padding: 20px;">
-    <a href="swara.html" class="menu-card" style="text-decoration: none; display: block; background: white; margin-bottom: 20px; border-radius: 20px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <img src="assets/categories/swara.png" style="width: 60px;">
-        <div>
-            <h2 style="color: #333;">স্বরবৰ্ণ</h2>
-            <p style="color: #666;">১১ টা স্বরবৰ্ণ শিকো আহা</p>
-        </div>
+  <section class="categories">
+    <a href="swara.html" class="category-card interactive-tap">
+      <img src="assets/categories/swara.png" alt="স্বৰবৰ্ণ">
+      <h2>স্বৰবৰ্ণ</h2>
     </a>
 
-    <a href="vyanjan.html" class="menu-card" style="text-decoration: none; display: block; background: white; margin-bottom: 20px; border-radius: 20px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <img src="assets/categories/vyanjan.png" style="width: 60px;">
-        <div>
-            <h2 style="color: #333;">ব্যঞ্জনবৰ্ণ</h2>
-            <p style="color: #666;">৪১ টা ব্যঞ্জনবৰ্ণ শিকো আহা</p>
-        </div>
+    <a href="vyanjan.html" class="category-card interactive-tap">
+      <img src="assets/categories/vyanjan.png" alt="ব্যঞ্জনবৰ্ণ">
+      <h2>ব্যঞ্জনবৰ্ণ</h2>
     </a>
 
-    <a href="numbers.html" class="menu-card" style="text-decoration: none; display: block; background: white; margin-bottom: 20px; border-radius: 20px; padding: 20px; display: flex; align-items: center; gap: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <img src="assets/categories/numbers.png" style="width: 60px;">
-        <div>
-            <h2 style="color: #333;">সংখ্যা</h2>
-            <p style="color: #666;">১ ৰ পৰা ১০০ লৈ সংখ্যা</p>
-        </div>
+    <a href="numbers.html" class="category-card interactive-tap">
+      <img src="assets/categories/numbers.png" alt="সংখ্যা">
+      <h2>সংখ্যা</h2>
     </a>
-</div>
+  </section>
 
-<nav class="bottom-nav">
-    <a href="index.html" class="nav-item active">🏠 <span>Home</span></a>
-    <a href="learning.html" class="nav-item">📚 <span>Learning</span></a>
-    <a href="profile.html" class="nav-item">👤 <span>Profile</span></a>
-</nav>
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active interactive-tap">
+      <img src="assets/svg/home.svg" alt="হোম">
+      <span>ঘৰ</span>
+    </a>
+    <a href="learning.html" class="nav-item interactive-tap">
+      <img src="assets/svg/learn.svg" alt="শিকো">
+      <span>শিকো আহা</span>
+    </a>
+    <a href="profile.html" class="nav-item interactive-tap">
+      <img src="assets/svg/profile.svg" alt="প্ৰফাইল">
+      <span>মোৰ প্ৰফাইল</span>
+    </a>
+  </nav>
 
+  <script src="js/navigation.js"></script>
 </body>
 </html>
